@@ -1,0 +1,17 @@
+.table{
+    border: medium solid black;
+    margin-left: auto;
+    margin-right: auto;
+}
+th
+{
+    border:medium solid #5B5EA6;
+    margin-left:auto;
+    margin-right:auto;
+}
+td{
+    border:medium solid black;
+    color:blue;
+    font-weight:bold;
+    text-align: center;
+}
