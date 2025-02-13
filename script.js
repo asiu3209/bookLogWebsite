@@ -7,6 +7,7 @@ function addBook(){
     let cell2 = newRow.insertCell();
     let cell3 = newRow.insertCell();
     let cell4 = newRow.insertCell();
+    let cell5 = newRow.insertCell();
     // Get values
     let titleValue = document.getElementById("title").value;
     let authorValue = document.getElementById("author").value;
@@ -33,6 +34,16 @@ function addBook(){
 
     cell4.appendChild(statusDropdown);
 
+    let ratingDropdown = document.createElement("select");
+    options = ["1","2","3","4","5"];
+    options.forEach(optionText => {
+        let option = document.createElement("option");
+        option.value = optionText;
+        option.textContent = optionText;
+        ratingDropdown.appendChild(option);
+    });
+    cell5.appendChild(ratingDropdown);
+
     // Clear input fields
     document.getElementById("title").value = "";
     document.getElementById("author").value = "";
@@ -43,27 +54,24 @@ function addBook(){
 function removeBook(){
     let table = document.getElementById("table");
     let allRows = table.getElementsByTagName("tr");
-    let bookName = document.getElementById("remove").value;
+    let bookName = document.getElementById("remove").value.toLowerCase(); //compare non-case sensitive
     for(let i=0;i<allRows.length;i++){
         let cell = allRows[i].getElementsByTagName("td")[0];//title
-        if(cell && cell.textContent.trim() === bookName){
+        if(cell && cell.textContent.trim().toLowerCase() === bookName){ //ChatGPT Generated
             table.deleteRow(i);
             break;
         }
     }
     document.getElementById("remove").value ="";
 }
-//ChatGPT Generated
+
 function filterBooks() {
     let input = document.getElementById("search").value.trim().toLowerCase(); // Get input & make lowercase
     let table = document.getElementById("table");
-    let rows = table.getElementsByTagName("tr"); // Get all table rows
-
-    for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header
-        let titleCell = rows[i].getElementsByTagName("td")[0]; // Get first column (Title)
-        let title = titleCell?.textContent.trim().toLowerCase(); // Get title text
-
-        // Show row if title contains input, else hide it
+    let rows = table.getElementsByTagName("tr");
+    for (let i = 1; i < rows.length; i++) { 
+        let titleCell = rows[i].getElementsByTagName("td")[0];
+        let title = titleCell?.textContent.trim().toLowerCase(); 
         rows[i].style.display = title.includes(input) ? "" : "none";
     }
 }
