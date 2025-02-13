@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+    <input type="text" id="searchTitle"onkeyup="filterTable()" placeholder="Search by title...">
+    <br><br>
     <table id="table" class="table" width="600">
         <tr>            
             <th>Book Title</th>
@@ -16,21 +18,19 @@
             <th>Reading Status</th>
         </tr>
         <tr>
-            <td>cell 1</td>
         </tr>
     </table>
     <br>
     <table id="insertTable" width="600">
         <tr>
-            <label for="title">Book Name: </label><input id="title" type="text">
-            <label for="author">Author:</label><input id="author" type="text">
-            <label for="genre">Genre:</label><input id="genre" type="text">
-            <label for="status">Status</label>
+            <input id="title" type="text" placeholder="Enter Book Title">
+            <input id="author" type="text" placeholder="Enter Author">
+            <input id="genre" type="text"  placeholder="Enter Genre">
             <select id="status" name="status">
                 <option value="Not Started">Not Started</option>
                 <option value="Reading">Reading</option>
                 <option value="Completed">Completed</option>
-              </select>
+            </select>
             <button onClick="addBook()">Add Book</button>
         </tr>
     </table>    
