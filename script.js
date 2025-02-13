@@ -31,11 +31,19 @@ function addBook(){
         }
         statusDropdown.appendChild(option);
     });
-
+    //add an onchange
+    // statusDropdown.onchange = function() {
+    //     let selectedOption = statusDropdown.options[statusDropdown.selectedIndex].value;
+    //     if (selectedOption === "Completed") {
+    //         cell5.innerHTML = "5";
+    //     } else {
+    //         cell5.innerHTML = "";
+    //     }
+    // }
     cell4.appendChild(statusDropdown);
 
     let ratingDropdown = document.createElement("select");
-    options = ["1","2","3","4","5"];
+    options = ["","1","2","3","4","5"];
     options.forEach(optionText => {
         let option = document.createElement("option");
         option.value = optionText;
