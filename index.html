@@ -18,6 +18,21 @@
             <td>cell 1</td>
         </tr>
     </table>
+    <br>
+    <table id="insertTable" width="600">
+        <tr>
+            <label for="title">Book Name: </label><input id="title" type="text">
+            <label for="author">Author:</label><input id="author" type="text">
+            <label for="genre">Genre:</label><input id="genre" type="text">
+            <label for="status">Status</label>
+            <select id="status" name="status">
+                <option value="Not Started">Not Started</option>
+                <option value="Reading">Reading</option>
+                <option value="Completed">Completed</option>
+              </select>
+            <button onClick="addBook()">Add Book</button>
+        </tr>
+    </table>    
 </body>
 <script src="script.js"></script>
 </html>
