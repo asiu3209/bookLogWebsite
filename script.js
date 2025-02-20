@@ -1,3 +1,4 @@
+var selectID = 6;
 function addBook(){
     let table = document.getElementById("table");
     let newRow = table.insertRow();
@@ -21,6 +22,7 @@ function addBook(){
     // Create a dropdown for status inside the table
     //ChatGPT Generated
     let statusDropdown = document.createElement("select");
+    statusDropdown.id = selectID++;
     let options = ["Not Started", "In Progress", "Completed"];
     options.forEach(optionText => {
         let option = document.createElement("option");
@@ -31,7 +33,9 @@ function addBook(){
         }
         statusDropdown.appendChild(option);
     });
-    //ratingDropdown.addEventListener("change",);
+    statusDropdown.onchange = function() {
+        playSound(statusDropdown.id);
+    };
     cell4.appendChild(statusDropdown);
 
     //add book score dropdown
@@ -44,7 +48,7 @@ function addBook(){
         ratingDropdown.appendChild(option);
     });
     cell5.appendChild(ratingDropdown);
-    
+
     // Clear input fields
     document.getElementById("title").value = "";
     document.getElementById("author").value = "";
@@ -78,16 +82,21 @@ function filterBooks() {
     }
 }
 
-function sortBy(){
+function filterGenre() {
+    let input = document.getElementById("filterGenre").value.trim().toLowerCase(); // Get input & make lowercase
     let table = document.getElementById("table");
     let rows = table.getElementsByTagName("tr");
-    let sortedRows = Array.from(rows).slice(1); // Skip header row
-    let sortIndex = document.getElementById("sort").value.parseInt();
-    sortedRows.sort((a, b) => {
-        let aValue = a.getElementsByTagName("td")[sortIndex].textContent.trim().toLowerCase();
-        let bValue = b.getElementsByTagName("td")[sortIndex].textContent.trim().toLowerCase();
-        return aValue.localeCompare(bValue);
-    });
-    // Append sorted rows to table
-    sortedRows.forEach(row => table.appendChild(row));
+    for (let i = 1; i < rows.length; i++) { 
+        let titleCell = rows[i].getElementsByTagName("td")[2];
+        let title = titleCell?.textContent.trim().toLowerCase(); 
+        rows[i].style.display = title.includes(input) ? "" : "none";
+    }
+}
+
+function playSound(id){
+    let selected = document.getElementById(id);
+    if(selected.value === "Completed"){
+        let audio = new Audio("congrats.mp3");
+        audio.play();
+    }
 }

@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Lucida Console", "Courier New", monospace;
     background-color:#f5f5dc;
     margin: 20px;
     text-align: center;
@@ -12,7 +12,6 @@ input,select{
     border-radius: 5px;
 }
 
-/* Button Styling */
 button {
     padding: 8px;
     margin: 5px;
@@ -28,7 +27,6 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Table Styling */
 table {
     width: 80%;
     margin: 20px auto;
@@ -40,7 +38,7 @@ table {
 th, td {
     padding: 12px;
     border: 1px solid #ddd;
-    text-align: left;
+    text-align: center;
 }
 
 th {
@@ -48,12 +46,3 @@ th {
     color: white;
 }
 
-/* Search and Filter Styling */
-#search, #filter {
-    width: 250px;
-}
-
-/* Centering Controls */
-#controls {
-    margin-bottom: 20px;
-}

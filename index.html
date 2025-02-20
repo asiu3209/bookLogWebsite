@@ -8,13 +8,6 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <input type="text" id="search" onkeyup="filterBooks()" placeholder="Search by title...">
-    <select id="sort" onchange="sortBy()">
-        <option></option>
-        <option value="0">Sort By Title</option>
-        <option value="1">Sort By Author</option>
-    </select>
-    <br><br>
     <table id="table" class="table">
         <tr>            
             <th>Book Title</th>
@@ -28,10 +21,10 @@
             <td>J.R.R. Tolkien</td>
             <td>Fantasy</td>
             <td>
-                <select>
+                <select id="select1" onchange="playSound('select1')">
                     <option selected>Not Started</option>
                     <option>In Progress</option>
-                    <option>Completed</option>
+                    <option value="Completed">Completed</option>
                 </select>
             </td>
             <td>
@@ -50,10 +43,10 @@
             <td>George Orwell</td>
             <td>Dystopian</td>
             <td>
-                <select>
+                <select id="select2" onchange="playSound('select2')">
                     <option selected>Not Started</option>
                     <option>In Progress</option>
-                    <option>Completed</option>
+                    <option value="Completed">Completed</option>
                 </select>
             </td>
             <td>
@@ -72,10 +65,10 @@
             <td>Harper Lee</td>
             <td>Classic</td>
             <td>
-                <select>
+                <select id="select3" onchange="playSound('select3')">
                     <option selected>Not Started</option>
                     <option>In Progress</option>
-                    <option>Completed</option>
+                    <option value="Completed">Completed</option>
                 </select>
             </td>
             <td>
@@ -94,10 +87,10 @@
             <td>F. Scott Fitzgerald</td>
             <td>Classic</td>
             <td>
-                <select>
+                <select id="select4" onchange="playSound('select4')">
                     <option selected>Not Started</option>
                     <option>In Progress</option>
-                    <option>Completed</option>
+                    <option value="Completed">Completed</option>
                 </select>
             </td>
             <td>
@@ -116,10 +109,10 @@
             <td>J.D. Salinger</td>
             <td>Fiction</td>
             <td>
-                <select>
+                <select id="select5" onchange="playSound('select5')">
                     <option selected>Not Started</option>
                     <option>In Progress</option>
-                    <option>Completed</option>
+                    <option value="Completed">Completed</option>
                 </select>
             </td>
             <td>
@@ -134,19 +127,23 @@
             </td>
         </tr>
     </table>
-    <input id="title" type="text" placeholder="Enter Book Title">
-    <input id="author" type="text" placeholder="Enter Author">
-    <input id="genre" type="text" placeholder="Enter Genre">
-    <select id="status" name="status">
-        <option value="Not Started">Not Started</option>
-        <option value="Reading">Reading</option>
-        <option value="Completed">Completed</option>
-    </select>
-    <button onClick="addBook()">Add Book</button>
-    
-    <input id="remove" type="text" placeholder="Book Name">
-    <button onClick="removeBook()">Remove Book</button>
-    
+    <div>
+        <input id="title" type="text" placeholder="Enter Book Title">
+        <input id="author" type="text" placeholder="Enter Author">
+        <input id="genre" type="text" placeholder="Enter Genre">
+        <select id="status">
+            <option value="Not Started">Not Started</option>
+            <option value="Reading">Reading</option>
+            <option value="Completed">Completed</option>
+        </select>
+        <button onClick="addBook()">Add Book</button>
+        <input id="remove" type="text" placeholder="Book Name">
+        <button onClick="removeBook()">Remove Book</button>
+    </div>
+    <div>
+        <input type="text" id="search" onkeyup="filterBooks()" placeholder="Search by title...">
+        <input type="text" id="filterGenre" onkeyup="filterGenre()" placeholder="Filter by genre...">
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
