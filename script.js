@@ -62,7 +62,7 @@ function removeBook(){
     let bookName = document.getElementById("remove").value.trim().toLowerCase(); //compare non-case sensitive
     for(let i=0;i<allRows.length;i++){
         let cell = allRows[i].getElementsByTagName("td")[0];//title
-        if(cell && cell.textContent.trim().toLowerCase() === bookName){ //ChatGPT Generated
+        if(cell && cell.textContent.trim().toLowerCase() === bookName){ 
             table.deleteRow(i);
             document.getElementById("remove").value = "";
             return;
