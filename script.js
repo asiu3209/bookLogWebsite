@@ -31,22 +31,20 @@ function addBook(){
         }
         statusDropdown.appendChild(option);
     });
+    //ratingDropdown.addEventListener("change",);
     cell4.appendChild(statusDropdown);
 
     //add book score dropdown
     let ratingDropdown = document.createElement("select");
-    options = ["","1","2","3","4","5"];
-    options.forEach(optionText => {
+    let ratingOptions = ["","1","2","3","4","5"];
+    ratingOptions.forEach(optionText => {
         let option = document.createElement("option");
         option.value = optionText;
         option.textContent = optionText;
-        if (optionText === "") {
-            option.selected = true;
-        }
         ratingDropdown.appendChild(option);
     });
     cell5.appendChild(ratingDropdown);
-
+    
     // Clear input fields
     document.getElementById("title").value = "";
     document.getElementById("author").value = "";
@@ -57,15 +55,16 @@ function addBook(){
 function removeBook(){
     let table = document.getElementById("table");
     let allRows = table.getElementsByTagName("tr");
-    let bookName = document.getElementById("remove").value.toLowerCase(); //compare non-case sensitive
+    let bookName = document.getElementById("remove").value.trim().toLowerCase(); //compare non-case sensitive
     for(let i=0;i<allRows.length;i++){
         let cell = allRows[i].getElementsByTagName("td")[0];//title
         if(cell && cell.textContent.trim().toLowerCase() === bookName){ //ChatGPT Generated
             table.deleteRow(i);
-            break;
-        }
+            document.getElementById("remove").value = "";
+            return;
+        } 
     }
-    document.getElementById("remove").value ="";
+    alert("Book not found!");
 }
 
 function filterBooks() {
@@ -77,4 +76,18 @@ function filterBooks() {
         let title = titleCell?.textContent.trim().toLowerCase(); 
         rows[i].style.display = title.includes(input) ? "" : "none";
     }
+}
+
+function sortBy(){
+    let table = document.getElementById("table");
+    let rows = table.getElementsByTagName("tr");
+    let sortedRows = Array.from(rows).slice(1); // Skip header row
+    let sortIndex = document.getElementById("sort").value.parseInt();
+    sortedRows.sort((a, b) => {
+        let aValue = a.getElementsByTagName("td")[sortIndex].textContent.trim().toLowerCase();
+        let bValue = b.getElementsByTagName("td")[sortIndex].textContent.trim().toLowerCase();
+        return aValue.localeCompare(bValue);
+    });
+    // Append sorted rows to table
+    sortedRows.forEach(row => table.appendChild(row));
 }
