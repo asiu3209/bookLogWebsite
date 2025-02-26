@@ -9,127 +9,18 @@
 </head>
 <body>
     <table id="table" class="table">
-        <tr>            
-            <th>Book Title</th>
-            <th>Author</th>
-            <th>Genre</th>
-            <th>Reading Status</th>
-            <th>Book Score</th>
-        </tr>
-        <tr>
-            <td>The Hobbit</td>
-            <td>J.R.R. Tolkien</td>
-            <td>Fantasy</td>
-            <td>
-                <select id="select1" onchange="playSound('select1')">
-                    <option selected>Not Started</option>
-                    <option>In Progress</option>
-                    <option value="Completed">Completed</option>
-                </select>
-            </td>
-            <td>
-                <select>
-                    <option selected></option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>1984</td>
-            <td>George Orwell</td>
-            <td>Dystopian</td>
-            <td>
-                <select id="select2" onchange="playSound('select2')">
-                    <option selected>Not Started</option>
-                    <option>In Progress</option>
-                    <option value="Completed">Completed</option>
-                </select>
-            </td>
-            <td>
-                <select>
-                    <option selected></option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>To Kill a Mockingbird</td>
-            <td>Harper Lee</td>
-            <td>Classic</td>
-            <td>
-                <select id="select3" onchange="playSound('select3')">
-                    <option selected>Not Started</option>
-                    <option>In Progress</option>
-                    <option value="Completed">Completed</option>
-                </select>
-            </td>
-            <td>
-                <select>
-                    <option selected></option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>The Great Gatsby</td>
-            <td>F. Scott Fitzgerald</td>
-            <td>Classic</td>
-            <td>
-                <select id="select4" onchange="playSound('select4')">
-                    <option selected>Not Started</option>
-                    <option>In Progress</option>
-                    <option value="Completed">Completed</option>
-                </select>
-            </td>
-            <td>
-                <select>
-                    <option selected></option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>The Catcher in the Rye</td>
-            <td>J.D. Salinger</td>
-            <td>Fiction</td>
-            <td>
-                <select id="select5" onchange="playSound('select5')">
-                    <option selected>Not Started</option>
-                    <option>In Progress</option>
-                    <option value="Completed">Completed</option>
-                </select>
-            </td>
-            <td>
-                <select>
-                    <option selected></option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </td>
-        </tr>
+            <tr>
+                <th>Book Cover</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Status</th>
+                <th>Book Score</th>
+            </tr>
     </table>
     <div>
-        <input id="title" type="text" placeholder="Enter Book Title">
-        <input id="author" type="text" placeholder="Enter Author">
+        <input id="title" type="text" placeholder="Enter Book Title" required="required">
+        <input id="author" type="text" placeholder="Enter Author" required="required">
         <input id="genre" type="text" placeholder="Enter Genre">
         <select id="status">
             <option value="Not Started">Not Started</option>
