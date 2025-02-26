@@ -51,16 +51,18 @@ function playSound(id){
 function getBookCover(title, author,cell){
     let url = `https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}`;
     fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        let cover = data.items[0].volumeInfo.imageLinks.thumbnail;
-        cell.appendChild(cover);
-    })
-    .catch(error => {
-        console.log(error);
-        cell.textContent = "No cover available";
-    });
-
+        .then(response => response.json())
+        .then(data => {
+            let cover = document.createElement("img");
+            cover.src = data.items[0].volumeInfo.imageLinks.thumbnail;
+            cover.style.width = "75px";
+            cover.style.height = "75px";
+            cell.appendChild(cover);
+        })
+        .catch(error => {
+            console.log(error);
+            cell.textContent = "No cover available";
+        });
 }
 
 function addBook() {
@@ -187,7 +189,7 @@ function addBookFromData(titleValue, authorValue, genreValue, statusValue) {
     let cell4 = newRow.insertCell();
     let cell5 = newRow.insertCell();
     let cell6 = newRow.insertCell();
-
+    
     getBookCover(titleValue, authorValue, cell1);
     cell2.innerHTML = titleValue;
     cell3.innerHTML = authorValue;
