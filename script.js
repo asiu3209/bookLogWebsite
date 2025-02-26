@@ -15,6 +15,7 @@ function removeBook(){
     alert("Book not found!");
 }
 
+//ChatGPT assisted
 function filterBooks() {
     let input = document.getElementById("search").value.trim().toLowerCase(); // Get input & make lowercase
     let table = document.getElementById("table");
@@ -25,7 +26,7 @@ function filterBooks() {
         rows[i].style.display = title.includes(input) ? "" : "none";
     }
 }
-
+//ChatGPT assisted
 function filterGenre() {
     let input = document.getElementById("filterGenre").value.trim().toLowerCase(); // Get input & make lowercase
     let table = document.getElementById("table");
@@ -46,6 +47,7 @@ function playSound(id){
 }
 
 //call google books api
+//ChatGPT assisted
 function getBookCover(title, author,cell){
     let url = `https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}`;
     fetch(url)
@@ -80,7 +82,7 @@ function addBook() {
     cell2.innerHTML = titleValue;
     cell3.innerHTML = authorValue;
     cell4.innerHTML = genreValue;
-    
+    //ChatGPT assisted
     let statusDropdown = document.createElement("select");
     statusDropdown.id = selectID++;
     let options = ["Not Started", "Reading", "Completed"];
@@ -97,7 +99,7 @@ function addBook() {
         playSound(statusDropdown.id);
     };
     cell5.appendChild(statusDropdown);
-    
+    //ChatGPT assisted
     let ratingDropdown = document.createElement("select");
     let ratingOptions = ["", "1", "2", "3", "4", "5"];
     ratingOptions.forEach(optionText => {
@@ -114,24 +116,6 @@ function addBook() {
     document.getElementById("author").value = "";
     document.getElementById("genre").value = "";
     document.getElementById("status").value = "Not Started";
-}
-
-//call google books api
-function fetchBookCover(title, author, cell) {
-    let url = `https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}`;
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            let cover = document.createElement("img");
-            cover.src = data.items[0].volumeInfo.imageLinks.thumbnail;
-            cover.style.width = "75px";
-            cover.style.height = "75px";
-            cell.appendChild(cover);
-        })
-        .catch(error => {
-            console.log(error);
-            cell.textContent = "No cover available";
-        });
 }
 
 function addBook() {
@@ -203,7 +187,8 @@ function addBookFromData(titleValue, authorValue, genreValue, statusValue) {
     let cell4 = newRow.insertCell();
     let cell5 = newRow.insertCell();
     let cell6 = newRow.insertCell();
-    
+
+    getBookCover(titleValue, authorValue, cell1);
     cell2.innerHTML = titleValue;
     cell3.innerHTML = authorValue;
     cell4.innerHTML = genreValue;
@@ -234,8 +219,6 @@ function addBookFromData(titleValue, authorValue, genreValue, statusValue) {
         ratingDropdown.appendChild(option);
     });
     cell6.appendChild(ratingDropdown);
-    
-    fetchBookCover(titleValue, authorValue, cell1);
 }
 
 //initialize the table with the starting books
