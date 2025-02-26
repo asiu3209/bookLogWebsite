@@ -64,7 +64,7 @@ function getBookCover(title, author,cell){
         })
         .catch(error => {
             console.log(error);
-            cell.textContent = "No cover\navailable";
+            cell.textContent = "No cover available";
         });
 }
 
