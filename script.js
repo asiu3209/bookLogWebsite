@@ -4,6 +4,7 @@ function removeBook(){
     let table = document.getElementById("table");
     let allRows = table.getElementsByTagName("tr");
     let bookName = document.getElementById("remove").value.trim().toLowerCase(); //compare non-case sensitive
+    //searches each row for the title name
     for(let i=0;i<allRows.length;i++){
         let cell = allRows[i].getElementsByTagName("td")[1];//title
         if(cell && cell.textContent.trim().toLowerCase() === bookName){ 
@@ -16,6 +17,7 @@ function removeBook(){
 }
 
 //ChatGPT assisted
+//Show books based off of the book title
 function filterBooks() {
     let input = document.getElementById("search").value.trim().toLowerCase(); // Get input & make lowercase
     let table = document.getElementById("table");
@@ -27,6 +29,7 @@ function filterBooks() {
     }
 }
 //ChatGPT assisted
+//Show books depending on what genre is entered
 function filterGenre() {
     let input = document.getElementById("filterGenre").value.trim().toLowerCase(); // Get input & make lowercase
     let table = document.getElementById("table");
@@ -61,14 +64,14 @@ function getBookCover(title, author,cell){
         })
         .catch(error => {
             console.log(error);
-            cell.textContent = "No cover available";
+            cell.textContent = "No cover\navailable";
         });
 }
 
 function addBook() {
     let table = document.getElementById("table");
+
     let newRow = table.insertRow();
-    
     let cell1 = newRow.insertCell();
     let cell2 = newRow.insertCell();
     let cell3 = newRow.insertCell();
@@ -81,9 +84,11 @@ function addBook() {
     let genreValue = document.getElementById("genre").value;
     let statusValue = document.getElementById("status").value;
     
+    getBookCover(titleValue, authorValue, cell1);
     cell2.innerHTML = titleValue;
     cell3.innerHTML = authorValue;
     cell4.innerHTML = genreValue;
+
     //ChatGPT assisted
     let statusDropdown = document.createElement("select");
     statusDropdown.id = selectID++;
@@ -101,6 +106,7 @@ function addBook() {
         playSound(statusDropdown.id);
     };
     cell5.appendChild(statusDropdown);
+
     //ChatGPT assisted
     let ratingDropdown = document.createElement("select");
     let ratingOptions = ["", "1", "2", "3", "4", "5"];
@@ -111,71 +117,12 @@ function addBook() {
         ratingDropdown.appendChild(option);
     });
     cell6.appendChild(ratingDropdown);
-    
-    fetchBookCover(titleValue, authorValue, cell1);
-    
+
+    //reset input values
     document.getElementById("title").value = "";
     document.getElementById("author").value = "";
     document.getElementById("genre").value = "";
     document.getElementById("status").value = "Not Started";
-}
-
-function addBook() {
-    let table = document.getElementById("table");
-    let newRow = table.insertRow();
-    //newRow.id = table.rows.length + 1;
-    let cell0 = newRow.insertCell();//book cover
-    let cell1 = newRow.insertCell();
-    let cell2 = newRow.insertCell();
-    let cell3 = newRow.insertCell();
-    let cell4 = newRow.insertCell();
-    let cell5 = newRow.insertCell();
-    // Get values
-    let titleValue = document.getElementById("title").value;
-    let authorValue = document.getElementById("author").value;
-    let genreValue = document.getElementById("genre").value;
-    let statusValue = document.getElementById("status").value;
-    //set values
-    getBookCover(titleValue, authorValue, cell0);
-    cell1.innerHTML = titleValue;
-    cell2.innerHTML = authorValue;
-    cell3.innerHTML = genreValue;
-    
-    // Create a dropdown for status inside the table
-    //ChatGPT Generated
-    let statusDropdown = document.createElement("select");
-    statusDropdown.id = selectID++;
-    let options = ["Not Started", "In Progress", "Completed"];
-    options.forEach(optionText => {
-        let option = document.createElement("option");
-        option.value = optionText;
-        option.textContent = optionText;
-        if (optionText === statusValue) {
-            option.selected = true;
-        }
-        statusDropdown.appendChild(option);
-    });
-    statusDropdown.onchange = function() {
-        playSound(statusDropdown.id);
-    };
-    cell4.appendChild(statusDropdown);
-
-    //add book score dropdown
-    let ratingDropdown = document.createElement("select");
-    let ratingOptions = ["","1","2","3","4","5"];
-    ratingOptions.forEach(optionText => {
-        let option = document.createElement("option");
-        option.value = optionText;
-        option.textContent = optionText;
-        ratingDropdown.appendChild(option);
-    });
-    cell5.appendChild(ratingDropdown);
-
-    // Clear input fields
-    document.getElementById("title").value = "";
-    document.getElementById("author").value = "";
-    document.getElementById("genre").value = "";
-    document.getElementById("status").value = "Not Started"
 }
 
 //Same function as add book but used to initialize the table with the starting books
