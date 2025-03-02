@@ -52,6 +52,10 @@ function playSound(id){
 //call google books api
 //ChatGPT assisted
 function getBookCover(title, author,cell){
+    if (title === ""){
+        cell.textContent = "No cover available";
+        return;
+    }
     let url = `https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}`;
     fetch(url)
         .then(response => response.json())
